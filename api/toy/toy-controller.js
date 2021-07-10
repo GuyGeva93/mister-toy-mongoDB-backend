@@ -47,8 +47,10 @@ async function deleteToy(req, res) {
 
 async function addToy(req, res) {
   try {
-    const toy = req.body
+    // console.log('req.body', req.body)
+    const {toy} = req.body
     const savedToy = await toyService.add(toy)
+    // console.log('savedToy', savedToy)
     res.send(savedToy)
     // socketService.broadcast({ type: 'user-updated', data: review, to: savedUser._id })
   } catch (err) {
@@ -59,8 +61,7 @@ async function addToy(req, res) {
 
 async function updateToy(req, res) {
   try {
-    const toy = req.body
-    console.log(toy);
+    const {toy} = req.body
     const savedToy = await toyService.update(toy)
     res.send(savedToy)
     // socketService.broadcast({ type: 'user-updated', data: review, to: savedUser._id })

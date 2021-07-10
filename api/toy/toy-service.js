@@ -46,14 +46,14 @@ async function remove(toyId) {
 }
 
 async function add(toy) {
+  const toyToAdd = {
+    name: toy.name,
+    price: toy.price,
+    type: toy.type,
+    createdAt: toy.createdAt,
+    inStock: toy.inStock
+  }
   try {
-    const toyToAdd = {
-      name: toy.name,
-      price: toy.price,
-      type: toy.type,
-      createdAt: toy.createdAt,
-      inStock: toy.inStock
-    }
     const collection = await dbService.getCollection('toy')
     await collection.insertOne(toyToAdd)
     return toyToAdd
@@ -83,24 +83,24 @@ async function update(toy) {
   }
 }
 
-async function add(toy) {
-  try {
-    // peek only updatable fields!
-    const toyToAdd = {
-      name: toy.toyname,
-      price: toy.fullname,
-      type: toy.type,
-      createdAt: toy.createdAt,
-      inStock: toy.inStock
-    }
-    const collection = await dbService.getCollection('toy')
-    await collection.insertOne(toyToAdd)
-    return toyToAdd
-  } catch (err) {
-    logger.error('cannot insert toy', err)
-    throw err
-  }
-}
+// async function add(toy) {
+//   try {
+//     // peek only updatable fields!
+//     const toyToAdd = {
+//       name: toy.toyname,
+//       price: toy.fullname,
+//       type: toy.type,
+//       createdAt: toy.createdAt,
+//       inStock: toy.inStock
+//     }
+//     const collection = await dbService.getCollection('toy')
+//     await collection.insertOne(toyToAdd)
+//     return toyToAdd
+//   } catch (err) {
+//     logger.error('cannot insert toy', err)
+//     throw err
+//   }
+// }
 
 function _buildCriteria(filterBy) {
   const criteria = {}

@@ -1,6 +1,6 @@
 
 const dbService = require('../../services/db.service')
-// const logger = require('../../services/logger.service')
+const logger = require('../../services/logger.service')
 // const reviewService = require('../review/review.service')
 const ObjectId = require('mongodb').ObjectId
 
@@ -50,7 +50,7 @@ async function add(toy) {
     name: toy.name,
     price: toy.price,
     type: toy.type,
-    createdAt: toy.createdAt,
+    createdAt: Date.now(),
     inStock: toy.inStock
   }
   try {
@@ -82,25 +82,6 @@ async function update(toy) {
     throw err
   }
 }
-
-// async function add(toy) {
-//   try {
-//     // peek only updatable fields!
-//     const toyToAdd = {
-//       name: toy.toyname,
-//       price: toy.fullname,
-//       type: toy.type,
-//       createdAt: toy.createdAt,
-//       inStock: toy.inStock
-//     }
-//     const collection = await dbService.getCollection('toy')
-//     await collection.insertOne(toyToAdd)
-//     return toyToAdd
-//   } catch (err) {
-//     logger.error('cannot insert toy', err)
-//     throw err
-//   }
-// }
 
 function _buildCriteria(filterBy) {
   const criteria = {}

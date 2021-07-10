@@ -22,11 +22,12 @@ async function getToy(req, res) {
 
 async function getToys(req, res) {
   try {
-    // const filterBy = {
-    //   txt: req.query?.txt || '',
-    //   minBalance: +req.query?.minBalance || 0
-    // }
-    const filterBy = ''
+    // const {filterBy} = req.query.params
+    // console.log('req.query', req.query.params)
+    const filterBy = {
+      txt: req.query?.txt || '',
+    }
+    // console.log('filterBy', filterBy)
     const toys = await toyService.query(filterBy)
     res.send(toys)
   } catch (err) {
@@ -47,10 +48,8 @@ async function deleteToy(req, res) {
 
 async function addToy(req, res) {
   try {
-    // console.log('req.body', req.body)
     const {toy} = req.body
     const savedToy = await toyService.add(toy)
-    // console.log('savedToy', savedToy)
     res.send(savedToy)
     // socketService.broadcast({ type: 'user-updated', data: review, to: savedUser._id })
   } catch (err) {

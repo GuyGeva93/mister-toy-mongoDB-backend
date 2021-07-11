@@ -36,6 +36,10 @@ async function deleteUser(req, res) {
   }
 }
 
+function addUser(user){
+
+}
+
 async function updateUser(req, res) {
   try {
     const user = req.body
@@ -52,5 +56,6 @@ module.exports = {
   getUser,
   getUsers,
   deleteUser,
+  addUser,
   updateUser
 }

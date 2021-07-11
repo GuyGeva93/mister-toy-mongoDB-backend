@@ -1,6 +1,6 @@
 const toyService = require('./toy-service')
-const socketService = require('../../services/socket.service')
-const logger = require('../../services/logger.service')
+const socketService = require('../../services/socket-service')
+const logger = require('../../services/logger-service')
 
 module.exports = {
   getToy,
@@ -22,12 +22,7 @@ async function getToy(req, res) {
 
 async function getToys(req, res) {
   try {
-    // const {filterBy} = req.query.params
-    // console.log('req.query', req.query.params)
-    const filterBy = {
-      txt: req.query?.txt || '',
-    }
-    // console.log('filterBy', filterBy)
+    const filterBy = req.query.params
     const toys = await toyService.query(filterBy)
     res.send(toys)
   } catch (err) {

@@ -1,6 +1,6 @@
 
-const dbService = require('../../services/db.service')
-// const logger = require('../../services/logger.service')
+const dbService = require('../../services/db-service')
+const logger = require('../../services/logger-service')
 const reviewService = require('../review/review.service')
 const ObjectId = require('mongodb').ObjectId
 
@@ -96,7 +96,8 @@ async function add(user) {
       username: user.username,
       password: user.password,
       fullname: user.fullname,
-      score: user.score || 0
+      score: user.score || 0,
+      isAdmin:false
     }
     const collection = await dbService.getCollection('user')
     await collection.insertOne(userToAdd)

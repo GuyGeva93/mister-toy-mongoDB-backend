@@ -1,7 +1,7 @@
 
 
-const asyncLocalStorage = require('./als.service');
-const logger = require('./logger.service');
+const asyncLocalStorage = require('./als-service');
+const logger = require('./logger-service');
 
 var gIo = null
 var gSocketBySessionIdMap = {}

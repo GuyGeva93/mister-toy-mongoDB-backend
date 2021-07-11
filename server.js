@@ -27,10 +27,10 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 const toyRoutes = require('./api/toy/toy-routes')
-const authRoutes = require('./api/auth/auth.routes')
-const userRoutes = require('./api/user/user.routes')
+const authRoutes = require('./api/auth/auth-routes')
+const userRoutes = require('./api/user/user-routes')
 const reviewRoutes = require('./api/review/review.routes')
-const {connectSockets} = require('./services/socket.service')
+const {connectSockets} = require('./services/socket-service')
 
 // routes
 const setupAsyncLocalStorage = require('./middlewares/setupAls.middleware')
@@ -56,7 +56,7 @@ connectSockets(http, session)
 //     res.sendFile(path.join(__dirname, 'public', 'index.html'))
 // })
 
-const logger = require('./services/logger.service')
+const logger = require('./services/logger-service')
 const port = process.env.PORT || 3030
 http.listen(port, () => {
     logger.info('Server is running on port: ' + port)

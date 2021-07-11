@@ -1,6 +1,6 @@
 
-const dbService = require('../../services/db.service')
-const logger = require('../../services/logger.service')
+const dbService = require('../../services/db-service')
+const logger = require('../../services/logger-service')
 // const reviewService = require('../review/review.service')
 const ObjectId = require('mongodb').ObjectId
 
@@ -85,20 +85,11 @@ async function update(toy) {
 
 function _buildCriteria(filterBy) {
   const criteria = {}
-  if (filterBy.txt) {
-    const txtCriteria = { $regex: filterBy.txt, $options: 'i' }
-    criteria.$or = [
-      {
-        toyname: txtCriteria
-      },
-      {
-        fullname: txtCriteria
-      }
-    ]
+  if (filterBy) {
+    const txtCriteria = { $regex: filterBy, $options: 'i' }
+    criteria.type = txtCriteria
   }
-  if (filterBy.minBalance) {
-    criteria.balance = { $gte: filterBy.minBalance }
-  }
+ 
   return criteria
 }
 

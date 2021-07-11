@@ -1,5 +1,5 @@
+
 const MongoClient = require('mongodb').MongoClient
-const uri = 'mongodb+srv://guy-dev:1234@cluster0.ocv6p.mongodb.net/TOY_DB'
 const config = require('../config')
 
 module.exports = {
@@ -25,8 +25,8 @@ async function getCollection(collectionName) {
 async function connect() {
   if (dbConn) return dbConn
   try {
-    const client = await MongoClient.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
-    // const client = await MongoClient.connect(config.dbURL, { useNewUrlParser: true, useUnifiedTopology: true })
+    // const client = await MongoClient.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
+    const client = await MongoClient.connect(config.dbURL, { useNewUrlParser: true, useUnifiedTopology: true })
     const db = client.db(dbName)
     dbConn = db
     return db

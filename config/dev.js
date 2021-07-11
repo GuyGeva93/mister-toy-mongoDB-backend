@@ -1,3 +1,3 @@
 module.exports = {
-  'dbURL': 'mongodb://localhost:27017',
+  'dbURL': 'mongodb+srv://guy-dev:1234@cluster0.ocv6p.mongodb.net/TOY_DB',
 }
